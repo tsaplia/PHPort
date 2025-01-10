@@ -1,0 +1,46 @@
+.small-tab {
+  width: calc(70px - 1ch);
+}
+
+.large-tab {
+  width: calc(110px - 1ch);
+}
+
+.navtab {
+  margin-bottom: 10px;
+  display: flex;
+  width: fit-content
+}
+
+.active {
+  color: var(--grey-90);
+}
+
+.navbar {
+  position: fixed;
+  left: 190px;
+  top: 300px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.info-box { 
+  position: relative;
+  top: -30px;
+  left: 0;
+  max-width: 380px;
+  margin-left: 50px;
+}
+
+.info {
+  color: var(--grey-90);
+  margin-top: 40px;
+  white-space: pre-wrap;
+}
