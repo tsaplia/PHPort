@@ -1,17 +1,15 @@
-import { pageComponents, Pages } from "./classes";
-import "./Page.css"
+import { IndexPages, pageComponents } from "./classes";
+import "./Page.css";
 
 interface PageProps {
-  page: Pages;
+  page: IndexPages;
   mode: "normal" | "preview" | "blur";
 }
 
 export function Page({ page, mode }: PageProps) {
   return (
-    <div className="container">
-      <div className={`content ${mode == "blur" ? "blurred" : ""}`}>
-        {mode == "preview" ? pageComponents[page].Preview() : pageComponents[page].Main()}
-      </div>
+    <div className={`container ${mode == "blur" ? "blurred" : ""}`}>
+      {mode == "preview" ? pageComponents[page].Preview() : pageComponents[page].Main()}
     </div>
   );
 }

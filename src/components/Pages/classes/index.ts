@@ -1,10 +1,11 @@
-import * as Glyphs from "./Glyphs"
-import * as Stuff from "./Stuff"
+import * as Glyphs from "./Glyphs";
+import * as Stuff from "./Stuff";
 
-export const pageComponents: {[name: string]: PageComponent} = {
-    stuff: Stuff,
-    glyphs: Glyphs
-} 
+export const indexPages = ["stuff", "glyphs"] as const;
 
-export const pageList = ["stuff", "glyphs"]
-export type Pages = (typeof pageList)[number];
+export type IndexPages = (typeof indexPages)[number];
+
+export const pageComponents: { [name in IndexPages]: PageComponent } = {
+  stuff: Stuff,
+  glyphs: Glyphs,
+};

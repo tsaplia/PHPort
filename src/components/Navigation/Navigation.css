@@ -44,3 +44,10 @@
   margin-top: 40px;
   white-space: pre-wrap;
 }
+
+.core-box {
+  width: 380px;
+  position: absolute;
+  top: 60px;
+  left: 280px;
+}

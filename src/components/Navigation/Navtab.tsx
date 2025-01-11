@@ -12,14 +12,12 @@ interface NavtabProps {
 export function Navtab({ text, isActive, onClick, onEnter, onLeave, className }: NavtabProps) {
   const [hover, setHover] = useState(false);
   function handle(action: "enter" | "leave" | "click") {
+    if (action == "enter") setHover(true);
+    else if (action == "leave") setHover(false);
     if (isActive) return;
-    if (action === "enter") {
-      onEnter();
-      setHover(true);
-    } else if (action == "leave") {
-      setHover(false);
-      onLeave();
-    } else if (action === "click") onClick();
+    if (action === "enter") onEnter();
+    else if (action == "leave") onLeave();
+    else if (action === "click") onClick();
   }
 
   return (

@@ -12,8 +12,11 @@ export const info =
 
 export function Main() {
   const pageContent = (
-    <div style={{ background: "linear-gradient(to bottom, red, blue)", minHeight: "150vh" }}>
-      test page !<div style={{ height: "100vh", marginBottom: "10px" }}></div>
+    <div
+      className="narrow-page"
+      style={{ background: "linear-gradient(to bottom, red, blue)", minHeight: "150vh" }}
+    >
+      Glyphs page !<div style={{ height: "100vh", marginBottom: "10px" }}></div>
       hi
     </div>
   );
@@ -22,8 +25,17 @@ export function Main() {
 
 export function Preview() {
   return (
-    <>
-      <div>Glyphs Preview</div>
-    </>
+    <div
+      className="centered-page"
+      style={{
+        background: "linear-gradient(to bottom, white, grey)",
+        opacity: "0.3",
+        color: "black",
+        padding: "30px",
+        borderRadius: "10px"
+      }}
+    >
+      Glyphs Preview
+    </div>
   );
 }

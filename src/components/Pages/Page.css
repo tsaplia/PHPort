@@ -6,14 +6,19 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  color: var(--grey-90);
 }
 
-.content.blurred{
+.container.blurred {
   opacity: 0.5;
   filter: blur(10px);
   z-index: -1;
 }
 
-.content {
+.narrow-page {
   width: 600px;
+}
+
+.container:has(.centered-page) {
+  align-items: center;
 }
