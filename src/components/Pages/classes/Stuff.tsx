@@ -24,7 +24,7 @@ export function Preview() {
   return (
     <div className="centered-page narrow-page">
       <div>
-        <img style={{filter: "grayscale(90%)"}} src={testImg} alt="" />
+        <img style={{ filter: "grayscale(90%)" }} src={testImg} alt="" />
       </div>
     </div>
   );

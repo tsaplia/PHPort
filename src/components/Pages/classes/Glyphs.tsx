@@ -10,17 +10,18 @@ export const info =
   "with your buddies after a pickleball game. This is a family place tied to legacy, love, and our " +
   "unrelenting desire to cultivate lived spaces where people can come as they are.";
 
-export function Main() {
-  const pageContent = (
-    <div
-      className="narrow-page"
-      style={{ background: "linear-gradient(to bottom, red, blue)", minHeight: "150vh" }}
-    >
-      Glyphs page !<div style={{ height: "100vh", marginBottom: "10px" }}></div>
-      hi
-    </div>
+export function Main(): React.ReactElement {
+  return (
+    <InfiniteScroll>
+      <div
+        className="narrow-page"
+        style={{ background: "linear-gradient(to bottom, red, blue)", minHeight: "150vh" }}
+      >
+        Glyphs page !<div style={{ height: "100vh", marginBottom: "10px" }}></div>
+        hi
+      </div>
+    </InfiniteScroll>
   );
-  return <InfiniteScroll page={pageContent} />;
 }
 
 export function Preview() {
@@ -32,7 +33,7 @@ export function Preview() {
         opacity: "0.3",
         color: "black",
         padding: "30px",
-        borderRadius: "10px"
+        borderRadius: "10px",
       }}
     >
       Glyphs Preview

@@ -1,78 +1,62 @@
-import React, { useState } from "react";
-import { Navtab } from "./Navtab";
+import { useState } from "react";
 import "./Navigation.css";
-import { pageComponents, indexPages, IndexPages } from "../Pages/classes";
-import * as Core from "./Core";
+import { indexPages } from "../Pages/classes";
+import { usePageContext } from "../../context/PageContext";
 
-interface NavigationProps {
-  setShowed: React.Dispatch<React.SetStateAction<IndexPages | null>>;
-  setPreview: React.Dispatch<React.SetStateAction<IndexPages | null>>;
-  setBlur: React.Dispatch<React.SetStateAction<boolean>>;
-  showed: IndexPages | null;
-  preview: IndexPages | null;
-}
-
-function Navigation({ setShowed, setPreview, setBlur, showed, preview }: NavigationProps) {
-  const [showCore, setShowCore] = useState<boolean>(false);
-  const [hovered, setHovered] = useState<"info" | "index" | "core" | null>(null);
-
-  function bluredEnter(page: "info" | "core") {
-    setHovered(page);
-    setBlur(true);
-  }
-
-  function bluredLeave() {
-    setHovered(null);
-    setBlur(false);
-  }
-
-  function pageClick(elem: IndexPages | "core") {
-    if (elem == "core") {
-      setShowCore(true);
-      setHovered(null);
-      setShowed(null);
-    } else {
-      setShowCore(false);
-      setShowed(elem);
-      setPreview(null);
-    }
-  }
-  const pageNodes = indexPages.map((p) => {
-    return (
-      <Navtab
-        className="large-tab"
-        key={p}
-        text={p}
-        isActive={showed === p}
-        onClick={() => pageClick(p)}
-        onEnter={() => setPreview(p)}
-        onLeave={() => setPreview(null)}
-      />
-    );
-  });
+function Navigation() {
+  const { show, setShow, setPreview } = usePageContext();
 
   return (
+    <div className="navbar">
+      <Navtab
+        className="small-tab"
+        text="CORE"
+        isActive={show === "core"}
+        onClick={() => setShow("core")}
+        onEnter={() => setPreview("core")}
+        onLeave={() => setPreview(null)}
+      />
+      <IndexMenu />
+    </div>
+  );
+}
+
+function IndexMenu() {
+  const { show, setShow, setPreview } = usePageContext();
+  const [hovered, setHovered] = useState<boolean>(false);
+
+  const childShowed = !!indexPages.find((p) => p.name === show);
+
+  const pageNodes = indexPages.map((p) => (
     <>
-      <div className="navbar">
+      {p.ready ? (
         <Navtab
-          className="small-tab"
-          text="CORE"
-          isActive={showCore}
-          onClick={() => pageClick("core")}
-          onEnter={() => bluredEnter("core")}
-          onLeave={() => bluredLeave()}
+          className="large-tab"
+          key={p.name}
+          text={p.name}
+          isActive={show === p.name}
+          onClick={() => setShow(p.name)}
+          onEnter={() => setPreview(p.name)}
+          onLeave={() => setPreview(null)}
         />
-        <div style={{ display: "flex" }} onMouseLeave={() => setHovered(null)}>
-          <Navtab
-            className="small-tab"
-            text="INDEX"
-            isActive={showed != null || hovered === "index"}
-            onClick={() => {}}
-            onEnter={() => setHovered("index")}
-            onLeave={() => {}}
-          />
-          <div className="menu">{(hovered === "index" || showed) && pageNodes}</div>
-          {showed && (
+      ) : (
+        <div className="navtab todo">//{p.name}</div>
+      )}
+    </>
+  ));
+
+  return (
+    <div style={{ display: "flex" }} onMouseLeave={() => setHovered(false)}>
+      <Navtab
+        className="small-tab"
+        text="INDEX"
+        isActive={childShowed || hovered}
+        onClick={() => {}}
+        onEnter={() => setHovered(true)}
+        onLeave={() => {}}
+      />
+      <div className="menu">{(childShowed || hovered) && pageNodes}</div>
+      {/* {childShowed && (
             <div className="info-box">
               <div
                 className={hovered === "info" ? "active" : ""}
@@ -85,13 +69,38 @@ function Navigation({ setShowed, setPreview, setBlur, showed, preview }: Navigat
                 <div className="info">{pageComponents[showed].info}</div>
               )}
             </div>
-          )}
-        </div>
-        {(showCore && !preview || hovered == "core") && (
-          <div className="core-box">{showCore ? Core.Main() : Core.Preview()}</div>
-        )}
-      </div>
-    </>
+          )} */}
+    </div>
+  );
+}
+
+interface NavtabProps {
+  text: string;
+  isActive: boolean;
+  onEnter: () => void;
+  onLeave: () => void;
+  onClick: () => void;
+  className: string;
+}
+
+export function Navtab({ text, isActive, onClick, onEnter, onLeave, className }: NavtabProps) {
+  const [hover, setHover] = useState<boolean>(false);
+  function handle(action: "enter" | "leave" | "click") {
+    if (action === "enter") onEnter(), setHover(true);
+    else if (action == "leave") onLeave(), setHover(false);
+    else if (action === "click") onClick();
+  }
+
+  return (
+    <div
+      className="navtab"
+      onMouseEnter={() => handle("enter")}
+      onMouseLeave={() => handle("leave")}
+      onClick={() => handle("click")}
+    >
+      <div className={`${className} ${hover || isActive ? "active" : ""}`}>{text}</div>
+      <div className={isActive ? "active" : ""}>{isActive ? "→" : hover ? "-" : "+"}</div>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export function InfiniteScroll({ page }: { page: JSX.Element }) {
+export function InfiniteScroll({ children }: {children: React.ReactNode}) {
   const scrollRef = useRef<HTMLDivElement>(null);
   function onScroll() {
       if (!scrollRef.current) return;
@@ -16,9 +16,9 @@ export function InfiniteScroll({ page }: { page: JSX.Element }) {
       ref={scrollRef}
       style={{ height: "100vh", overflowY: "scroll", scrollbarWidth: "none" }}
     >
-      {page}
-      {page}
-      {page}
+      {children}
+      {children}
+      {children}
     </div>
   );
 }

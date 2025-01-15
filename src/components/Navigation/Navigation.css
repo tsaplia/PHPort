@@ -12,6 +12,10 @@
   width: fit-content
 }
 
+.navtab.todo {
+  color: var(--grey-20)
+}
+
 .active {
   color: var(--grey-90);
 }
