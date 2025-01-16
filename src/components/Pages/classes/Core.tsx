@@ -1,7 +1,7 @@
 export function Main() {
   return (
-    <>
-      <div style={{ color: "var(--grey-90)" }}>
+    <div className="fixed left-[25vw] top-[16.6vw] max-w-[20vw]">
+      <div className="text-accent">
         Projects and singular explorations <br />
         are approached with a lack of constraint in mind, avoiding rigidity in effort to prioritize
         <br />
@@ -20,13 +20,13 @@ export function Main() {
         fiverr ↗<br />
         pinterest ↗<br />
       </div>
-    </>
+    </div>
   );
 }
 
 export function Preview() {
   return (
-    <div style={{ color: "var(--grey-20)" }}>
+    <div className="text-muted fixed left-[25vw] top-[16.6vw] max-w-[20vw]">
       Projects and singular explorations <br />
       are approached with a lack of constraint in mind, avoiding rigidity in effort to prioritize
       <br />

@@ -1,6 +1,6 @@
 import * as Glyphs from "./Glyphs";
 import * as Stuff from "./Stuff";
-import * as Core from "../../Navigation/Core"
+import * as Core from "./Core"
 
 export const indexPages = [
   { name: "stuff", ready: true },
@@ -11,7 +11,7 @@ export const indexPages = [
 export const pageComponents = {
   stuff: Stuff,
   glyphs: Glyphs,
-  core: Glyphs,
+  core: Core,
 } as const;
 
 export type Pages = keyof typeof pageComponents;

@@ -11,10 +11,10 @@ export function InfiniteScroll({ children }: {children: React.ReactNode}) {
     }
   }
   return (
-    <div
+    <div className="overflow-y-scroll h-full"
       onScroll={onScroll}
       ref={scrollRef}
-      style={{ height: "100vh", overflowY: "scroll", scrollbarWidth: "none" }}
+      style={{scrollbarWidth: "none" }}
     >
       {children}
       {children}

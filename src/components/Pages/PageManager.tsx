@@ -11,12 +11,15 @@ export function PageManager() {
   return (
     <>
       {Main && (
-        <div className={`container ${blur || Preview ? "blurred" : ""}`}>
+        <div
+          className={`w-full min-h-screen fixed flex justify-center 
+            ${blur || Preview ? "blurred" : ""}`}
+        >
           <Main />
         </div>
       )}
       {Preview && (
-        <div className="container">
+        <div className="w-full min-h-screen fixed flex justify-center">
           <Preview />
         </div>
       )}
