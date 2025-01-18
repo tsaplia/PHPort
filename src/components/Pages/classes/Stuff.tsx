@@ -12,7 +12,7 @@ export const info =
 
 export function Main() {
   return (
-    <div style={{ color: "limegreen" }} className="self-center w-page">
+    <div style={{ color: "limegreen" }} className="narrow-page centered-page">
       <div>
         <img src={testImg} alt="" />
       </div>
@@ -22,7 +22,7 @@ export function Main() {
 
 export function Preview() {
   return (
-    <div className="self-center w-page">
+    <div className="narrow-page centered-page">
       <div>
         <img style={{ filter: "grayscale(90%)" }} src={testImg} alt="" />
       </div>

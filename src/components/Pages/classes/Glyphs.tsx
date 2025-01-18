@@ -13,12 +13,15 @@ export const info =
 export function Main(): React.ReactElement {
   return (
     <InfiniteScroll>
-      <div
-        className="w-page"
-        style={{ background: "linear-gradient(to bottom, red, blue)", minHeight: "150vh" }}
-      >
-        <span className="ms-6">Glyphs page </span><div style={{ height: "100vh", marginBottom: "10px" }}></div>
-        hi
+      <div className="narrow-page">
+        <div
+          className="w-full"
+          style={{ background: "linear-gradient(to bottom, red, blue)", minHeight: "150vh" }}
+        >
+          <span className="ms-6">Glyphs page </span>
+          <div style={{ height: "100vh", marginBottom: "10px" }}></div>
+          hi
+        </div>
       </div>
     </InfiniteScroll>
   );
@@ -26,17 +29,18 @@ export function Main(): React.ReactElement {
 
 export function Preview() {
   return (
-    <div
-      className="self-center"
-      style={{
-        background: "linear-gradient(to bottom, white, grey)",
-        opacity: "0.3",
-        color: "black",
-        padding: "30px",
-        borderRadius: "10px",
-      }}
-    >
-      Glyphs Preview
+    <div className="centered-page">
+      <div
+        style={{
+          background: "linear-gradient(to bottom, white, grey)",
+          opacity: "0.3",
+          color: "black",
+          padding: "30px",
+          borderRadius: "10px",
+        }}
+      >
+        Glyphs Preview
+      </div>
     </div>
   );
 }

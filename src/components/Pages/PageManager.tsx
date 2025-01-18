@@ -12,14 +12,14 @@ export function PageManager() {
     <>
       {Main && (
         <div
-          className={`w-full min-h-screen fixed flex justify-center 
-            ${blur || Preview ? "blurred" : ""}`}
+          className={`w-screen min-h-screen fixed 
+            ${blur || Preview ? "-z-1 opacity-50 blur-md" : ""}`}
         >
           <Main />
         </div>
       )}
       {Preview && (
-        <div className="w-full min-h-screen fixed flex justify-center">
+        <div className="w-screen min-h-screen fixed">
           <Preview />
         </div>
       )}

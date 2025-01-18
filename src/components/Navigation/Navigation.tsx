@@ -6,9 +6,9 @@ function Navigation() {
   const { show, setShow, setPreview } = usePageContext();
 
   return (
-    <div className="fixed z-10 flex flex-col left-[10vw] top-[14vw]">
+    <div className="fixed z-10 flex flex-col left-[150px] top-[240px]">
       <Navtab
-        _class="w-tab-small"
+        _class="w-smtab"
         text="CORE"
         active={show === "core"}
         onClick={() => setShow("core")}
@@ -27,27 +27,10 @@ function IndexMenu() {
 
   const childShowed = !!indexPages.find((p) => p.name === show);
 
-  const pageNodes = indexPages.map((p) => (
-    <Navtab
-      _class="w-tab"
-      key={p.name}
-      text={p.name}
-      active={show === p.name}
-      onClick={() => {
-        if (p.ready) setShow(p.name);
-      }}
-      onEnter={() => {
-        if (p.ready) setPreview(p.name);
-      }}
-      onLeave={() => setPreview(null)}
-      disabled={!p.ready}
-    />
-  ));
-
   return (
     <div className="flex" onMouseLeave={() => setHovered(false)}>
       <Navtab
-        _class="w-tab-small"
+        _class="w-smtab"
         text="INDEX"
         active={childShowed || hovered}
         onClick={() => {}}
@@ -55,7 +38,25 @@ function IndexMenu() {
         onLeave={() => {}}
         disabled={false}
       />
-      <div className="flex flex-col ms-[2.5vw] w-tab">{(childShowed || hovered) && pageNodes}</div>
+      <div className="flex flex-col ms-[36px] w-tab">
+        {(childShowed || hovered) &&
+          indexPages.map((p) => (
+            <Navtab
+              _class="w-tab"
+              key={p.name}
+              text={p.name}
+              active={show === p.name}
+              onClick={() => {
+                if (p.ready) setShow(p.name);
+              }}
+              onEnter={() => {
+                if (p.ready) setPreview(p.name);
+              }}
+              onLeave={() => setPreview(null)}
+              disabled={!p.ready}
+            />
+          ))}
+      </div>
       {/* {childShowed && (
             <div _class="info-box">
               <div
@@ -87,22 +88,26 @@ interface NavtabProps {
 export function Navtab({ text, active, onClick, onEnter, onLeave, _class, disabled }: NavtabProps) {
   const [hover, setHover] = useState<boolean>(false);
   function handle(action: "enter" | "leave" | "click") {
-    if (action === "enter") onEnter(), setHover(true);
-    else if (action == "leave") onLeave(), setHover(false);
-    else if (action === "click") onClick();
+    if (action === "enter") {
+      onEnter();
+      setHover(true);
+    } else if (action == "leave") {
+      onLeave();
+      setHover(false);
+    } else if (action === "click") onClick();
   }
 
-  if (disabled) return <div className="flex text-muted w-auto">// {text}</div>;
+  if (disabled) return <div className="flex text-muted w-auto h-[15px] mb-[8px]">{"// " + text}</div>;
 
   return (
     <div
-      className="flex w-auto"
+      className="flex w-auto h-[15px] mb-[8px]"
       onMouseEnter={() => handle("enter")}
       onMouseLeave={() => handle("leave")}
       onClick={() => handle("click")}
     >
       <div className={`${_class} ${hover || active ? "text-accent" : ""}`}>{text}</div>
-      <div className={active ? "text-accent" : ""}>{active ? "→" : hover ? "-" : "+"}</div>
+      <div className={active ? "text-accent" : ""}>{active ? "\u2192" : hover ? "-" : "+"}</div>
     </div>
   );
 }

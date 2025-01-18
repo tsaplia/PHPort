@@ -1,5 +1,12 @@
-.blurred {
-  opacity: 0.5;
-  filter: blur(10px);
-  z-index: -1;
+.centered-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.narrow-page {
+  display: flex;
+  justify-content: center;
+  padding: 0 calc(100% / 3);
 }

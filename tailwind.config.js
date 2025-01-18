@@ -10,9 +10,8 @@ export default {
         muted: "var(--text-muted)",
       },
       width: {
-        page: "33vw",
-        tab: "calc(6.2vw - 1ch)",
-        "tab-small": "calc(4.2vw - 1ch)"
+        tab: "calc(90px - 1ch)",
+        smtab: "calc(54px - 1ch);",
       },
     },
   },

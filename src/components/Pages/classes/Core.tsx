@@ -1,6 +1,6 @@
 export function Main() {
   return (
-    <div className="fixed left-[25vw] top-[16.6vw] max-w-[20vw]">
+    <div className="fixed left-[365px] top-[286px] max-w-[290px]">
       <div className="text-accent">
         Projects and singular explorations <br />
         are approached with a lack of constraint in mind, avoiding rigidity in effort to prioritize
@@ -26,7 +26,7 @@ export function Main() {
 
 export function Preview() {
   return (
-    <div className="text-muted fixed left-[25vw] top-[16.6vw] max-w-[20vw]">
+    <div className="text-muted fixed left-[365px] top-[286px] max-w-[290px]">
       Projects and singular explorations <br />
       are approached with a lack of constraint in mind, avoiding rigidity in effort to prioritize
       <br />
