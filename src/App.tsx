@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Navigation from "./components/Navigation/Navigation";
-import { PageManager } from "./components/Pages/PageManager";
+import { PageManager } from "./components/PageManager/PageManager";
 import { PageContext } from "./context/PageContext";
-import { Pages } from "./components/Pages/classes";
+import { Pages } from "./components/Pages";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const [preview, setPreview] = useState<Pages | null>(null);
@@ -11,7 +12,9 @@ function App() {
 
   return (
     <PageContext.Provider value={{ preview, setPreview, show, setShow, blur, setBlur }}>
-      <PageManager />
+      <Routes>
+        <Route path="/:page?" element={<PageManager/>}/>
+      </Routes>
       <Navigation />
     </PageContext.Provider>
   );

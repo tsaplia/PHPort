@@ -3,8 +3,8 @@ import * as Stuff from "./Stuff";
 import * as Core from "./Core"
 
 export const indexPages = [
-  { name: "stuff", ready: true },
-  { name: "glyphs", ready: true },
+  { name: "stuff", ready: true, id:"stuff" },
+  { name: "glyphs", ready: true, id: "glyphs" },
   { name: "test", ready: false },
 ] as const;
 

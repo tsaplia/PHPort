@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Pages } from "../components/Pages/classes";
+import { Pages } from "../components/Pages";
 
 interface PageContextType {
   show: Pages | null;
