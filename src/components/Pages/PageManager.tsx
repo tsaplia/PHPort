@@ -12,14 +12,14 @@ export function PageManager() {
     <>
       {Main && (
         <div
-          className={`w-screen min-h-screen fixed 
+          className={`w-screen min-h-screen fixed animate-fadeIn
             ${blur || Preview ? "-z-1 opacity-50 blur-md" : ""}`}
         >
           <Main />
         </div>
       )}
       {Preview && (
-        <div className="w-screen min-h-screen fixed">
+        <div className="w-screen min-h-screen fixed animate-fadeIn">
           <Preview />
         </div>
       )}

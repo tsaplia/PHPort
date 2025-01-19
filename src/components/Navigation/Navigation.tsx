@@ -38,9 +38,9 @@ function IndexMenu() {
         onLeave={() => {}}
         disabled={false}
       />
-      <div className="flex flex-col ms-[36px] w-tab">
-        {(childShowed || hovered) &&
-          indexPages.map((p) => (
+      {(childShowed || hovered) && (
+        <div className="flex flex-col ms-[36px] w-tab animate-fadeIn">
+          {indexPages.map((p) => (
             <Navtab
               _class="w-tab"
               key={p.name}
@@ -56,7 +56,8 @@ function IndexMenu() {
               disabled={!p.ready}
             />
           ))}
-      </div>
+        </div>
+      )}
       {/* {childShowed && (
             <div _class="info-box">
               <div
@@ -97,11 +98,16 @@ export function Navtab({ text, active, onClick, onEnter, onLeave, _class, disabl
     } else if (action === "click") onClick();
   }
 
-  if (disabled) return <div className="flex text-muted w-auto h-[15px] mb-[8px]">{"// " + text}</div>;
+  if (disabled)
+    return (
+      <div className="flex text-muted w-auto h-[15px] mb-[8px] cursor-wait select-none">
+        {"// " + text}
+      </div>
+    );
 
   return (
     <div
-      className="flex w-auto h-[15px] mb-[8px]"
+      className="flex w-auto h-[15px] mb-[8px] cursor-pointer select-none"
       onMouseEnter={() => handle("enter")}
       onMouseLeave={() => handle("leave")}
       onClick={() => handle("click")}

@@ -5,9 +5,12 @@ export function InfiniteScroll({ children }: { children: React.ReactNode }) {
   function onScroll() {
     if (!scrollRef.current) return;
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-    const pageHeight = scrollHeight / 3;
-    if (scrollTop + clientHeight >= 2 * pageHeight) {
+    const pageHeight = scrollHeight / 4;
+    if (scrollTop + clientHeight >= 3 * pageHeight) {
       scrollRef.current.scrollTop = scrollTop - pageHeight;
+    }
+    if (scrollTop < pageHeight) {
+      scrollRef.current.scrollTop = scrollTop + pageHeight;
     }
   }
   return (
@@ -17,6 +20,7 @@ export function InfiniteScroll({ children }: { children: React.ReactNode }) {
       onScroll={onScroll}
       ref={scrollRef}
     >
+      {children}
       {children}
       {children}
       {children}

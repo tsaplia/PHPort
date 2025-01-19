@@ -13,6 +13,15 @@ export default {
         tab: "calc(90px - 1ch)",
         smtab: "calc(54px - 1ch);",
       },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+      },
+      animation: {
+        fadeIn: "fadeIn 100ms ease-in",
+      },
     },
   },
   plugins: [],
