@@ -1,29 +1,27 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Pages } from "../Pages";
 
-interface NavtabProps {
+interface Props {
   text: string;
-  link: Pages | null;
+  link: string | null;
   active: boolean;
-  onEnter: () => void;
-  onLeave: () => void;
-  _class: string;
+  onEnter?: () => void;
+  onLeave?: () => void;
+  className: string;
   disabled: boolean;
 }
 
-export function Navtab({ text, active, onEnter, onLeave, _class, disabled, link }: NavtabProps) {
+const Navtab: React.FC<Props> = ({ text, active, onEnter, onLeave, className, disabled, link }) => {
   const [hover, setHover] = useState<boolean>(false);
-  function handle(action: "enter" | "leave") {
-    if (action === "enter") {
-      onEnter();
-      setHover(true);
-    } else if (action == "leave") {
-      onLeave();
-      setHover(false);
-    }
+  function handleEnter() {
+    if (!active && onEnter) onEnter();
+    setHover(true);
   }
 
+  function handleLeave() {
+    if (!active && onLeave) onLeave();
+    setHover(false);
+  }
   if (disabled)
     return (
       <div className="flex text-muted w-auto h-[15px] mb-[8px] cursor-wait select-none">
@@ -35,12 +33,12 @@ export function Navtab({ text, active, onEnter, onLeave, _class, disabled, link 
     <Link
       to={link ? `/${link}` : "#"}
       className="flex w-auto h-[15px] mb-[8px] cursor-pointer select-none"
-      onMouseEnter={() => handle("enter")}
-      onMouseLeave={() => handle("leave")}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
     >
-      <div className={`${_class} ${hover || active ? "text-accent" : ""}`}>{text}</div>
+      <div className={`${className} ${hover || active ? "text-accent" : ""}`}>{text}</div>
       <div className={active ? "text-accent" : ""}>{active ? "\u2192" : hover ? "-" : "+"}</div>
     </Link>
   );
-}
+};
 export default Navtab;

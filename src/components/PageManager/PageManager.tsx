@@ -1,37 +1,34 @@
-import { useParams } from "react-router-dom";
-import { usePageContext } from "../../context/PageContext";
-import { pageComponents, Pages } from "../Pages";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./PageManager.css";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSaveContext } from "../../lib/use-context";
+import { PageContext } from "../../contexts/PageContext";
+import CorePage from "./CorePage";
+import IndexPages from "./IndexPages";
 
-export function PageManager() {
-  const { page: pageParam } = useParams<{ page: string }>();
-  const { preview, blur, setShow } = usePageContext();
+interface Props {
+  className?: string;
+}
 
-  const page: Pages | null =
-    pageParam && Object.keys(pageComponents).includes(pageParam) ? (pageParam as Pages) : null;
+const PageManager: React.FC<Props> = ({ className = "" }) => {
+  const page = useSaveContext(PageContext);
+  const location = useLocation();
+
   useEffect(() => {
-    setShow(page || null);
-  }, [page]);
+    page.setPreview(null);
+  }, [location]);
 
-  if (!page && !preview) return null;
-  const Preview = preview && preview !== page ? pageComponents[preview].Preview : null;
-  const Main = page ? pageComponents[page].Main : null;
   return (
     <>
-      {Main && (
-        <div
-          className={`w-screen min-h-screen fixed
-            ${blur || Preview ? "-z-1 opacity-50 blur-md" : ""}`}
-        >
-          <Main />
-        </div>
-      )}
-      {Preview && (
-        <div className="w-screen min-h-screen fixed">
-          <Preview />
-        </div>
-      )}
+      <div className={`${className} ${page.blur ? "-z-1 opacity-50 blur-md" : ""}`}>
+        <Routes>
+          <Route path="/" element={<></>} />
+          <Route path="/core" element={<CorePage />} />
+          <Route path="/index/:page?" element={<IndexPages />} />
+        </Routes>
+      </div>
     </>
   );
-}
+};
+
+export default PageManager;

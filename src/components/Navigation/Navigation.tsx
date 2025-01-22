@@ -1,16 +1,23 @@
-import { usePageContext } from "../../context/PageContext";
+import { NavContext } from "../../contexts/NavContext";
+import { PageContext } from "../../contexts/PageContext";
+import { useSaveContext } from "../../lib/use-context";
 import IndexMenu from "./IndexMenu";
-import Navtab from "./Navbar";
+import Navtab from "./Navtab";
 
-function Navigation() {
-  const { show, setPreview } = usePageContext();
+interface Props {
+  className?: string;
+}
+
+export const Navigation: React.FC<Props> = ({ className = "" }) => {
+  const { setPreview } = useSaveContext(PageContext);
+  const { section } = useSaveContext(NavContext);
 
   return (
-    <div className="fixed z-10 flex flex-col left-[150px] top-[240px]">
+    <div className={"flex flex-col " + className}>
       <Navtab
-        _class="w-smtab"
+        className="w-smtab"
         text="CORE"
-        active={show === "core"}
+        active={section === "core"}
         link="core"
         onEnter={() => setPreview("core")}
         onLeave={() => setPreview(null)}
@@ -19,6 +26,6 @@ function Navigation() {
       <IndexMenu />
     </div>
   );
-}
+};
 
 export default Navigation;
