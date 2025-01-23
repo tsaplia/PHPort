@@ -14,6 +14,7 @@ function IndexPages() {
   const page = pageParam ? (pageParam as Pages) : null;
   useEffect(() => {
     nav.setPage("index", page);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   if (!page) return null;

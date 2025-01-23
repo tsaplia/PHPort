@@ -16,6 +16,7 @@ const PageManager: React.FC<Props> = ({ className = "" }) => {
 
   useEffect(() => {
     page.setPreview(null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (

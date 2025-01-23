@@ -16,7 +16,7 @@ export const Navigation: React.FC<Props> = ({ className = "" }) => {
     <div className={"flex flex-col " + className}>
       <Navtab
         className="w-smtab"
-        text="CORE"
+        text="core"
         active={section === "core"}
         link="core"
         onEnter={() => setPreview("core")}

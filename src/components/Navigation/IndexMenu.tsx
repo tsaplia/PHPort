@@ -12,14 +12,14 @@ function IndexMenu() {
     <div className="flex group">
       <Navtab
         className="w-smtab"
-        text="INDEX"
+        text="index"
         active={section == "index"}
         disabled={false}
         link={"index"}
       />
 
       <div
-        className={`flex flex-col ms-[36px] w-tab animate-fadeIn group-hover:block 
+        className={`flex flex-col ms-12 w-tab animate-fadeIn group-hover:block 
           ${section == "index" ? "block" : "hidden"}`}
       >
         {indexPages.map((p) => (

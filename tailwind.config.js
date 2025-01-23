@@ -10,8 +10,8 @@ export default {
         muted: "var(--text-muted)",
       },
       width: {
-        tab: "calc(90px - 1ch)",
-        smtab: "calc(54px - 1ch);",
+        tab: "calc(182px - 1ch)",
+        smtab: "calc(92px - 1ch);",
       },
       keyframes: {
         fadeIn: {

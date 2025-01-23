@@ -24,7 +24,7 @@ const Navtab: React.FC<Props> = ({ text, active, onEnter, onLeave, className, di
   }
   if (disabled)
     return (
-      <div className="flex text-muted w-auto h-[15px] mb-[8px] cursor-wait select-none">
+      <div className="flex text-muted w-auto h-[15px] mb-[8px] cursor-wait select-none leading-none">
         {"// " + text}
       </div>
     );
@@ -32,7 +32,7 @@ const Navtab: React.FC<Props> = ({ text, active, onEnter, onLeave, className, di
   return (
     <Link
       to={link ? `/${link}` : "#"}
-      className="flex w-auto h-[15px] mb-[8px] cursor-pointer select-none"
+      className="flex w-auto h-4 mb-4 cursor-pointer select-none leading-none"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
