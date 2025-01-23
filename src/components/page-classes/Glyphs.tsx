@@ -1,4 +1,5 @@
 import { InfiniteScroll } from "./utils";
+import img from "@assets/pages/bot.png";
 
 export const info =
   "Scully’s Irish Pub \n We’re Irish, that’s why! \nScully’s Irish Pub & Eatery pays homage \n" +
@@ -29,18 +30,9 @@ export function Main(): React.ReactElement {
 
 export function Preview() {
   return (
-    <div className="centered-page">
-      <div
-        style={{
-          background: "linear-gradient(to bottom, white, grey)",
-          opacity: "0.3",
-          color: "black",
-          padding: "30px",
-          borderRadius: "10px",
-        }}
-      >
-        Glyphs Preview
-      </div>
+    <div className="w-full">
+      <img src={img} alt="" />
     </div>
   );
 }
+

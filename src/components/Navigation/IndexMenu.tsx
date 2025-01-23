@@ -3,8 +3,11 @@ import { indexPages } from "../page-classes";
 import Navtab from "./Navtab";
 import { useSaveContext } from "../../lib/use-context";
 import { NavContext } from "../../contexts/NavContext";
+import { useLocation } from "react-router-dom";
 
 function IndexMenu() {
+  const location = useLocation();
+  
   const { section, page } = useSaveContext(NavContext);
   const { setPreview } = useSaveContext(PageContext);
 
@@ -15,7 +18,7 @@ function IndexMenu() {
         text="index"
         active={section == "index"}
         disabled={false}
-        link={"index"}
+        link={"/index"}
       />
 
       <div
@@ -28,9 +31,9 @@ function IndexMenu() {
             key={p.name}
             text={p.name}
             active={page === p.name}
-            link={p.ready ? "index/" + p.id : null}
+            link={p.ready ? `/index/${p.id}${location.search}` : null}
             onEnter={() => {
-              if (p.ready) setPreview(p.name);
+              if (p.ready) setPreview(p.id);
             }}
             onLeave={() => setPreview(null)}
             disabled={!p.ready}

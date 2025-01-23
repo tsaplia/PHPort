@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { NavContext } from "../../contexts/NavContext";
 import { PageContext } from "../../contexts/PageContext";
 import { useSaveContext } from "../../lib/use-context";
@@ -11,6 +12,7 @@ interface Props {
 export const Navigation: React.FC<Props> = ({ className = "" }) => {
   const { setPreview } = useSaveContext(PageContext);
   const { section } = useSaveContext(NavContext);
+  const location = useLocation();
 
   return (
     <div className={"flex flex-col " + className}>
@@ -18,7 +20,7 @@ export const Navigation: React.FC<Props> = ({ className = "" }) => {
         className="w-smtab"
         text="core"
         active={section === "core"}
-        link="core"
+        link={`/core${location.search}`}
         onEnter={() => setPreview("core")}
         onLeave={() => setPreview(null)}
         disabled={false}

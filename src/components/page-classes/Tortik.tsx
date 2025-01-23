@@ -1,4 +1,4 @@
-import img from "@assets/pages/stuff/test.png";
+import img from "@assets/pages/tortik.png";
 
 export const info =
   "Scully’s Bottie Pub \n We’re Irish, that’s why! \nScully’s Irish Pub & Eatery pays homage \n" +
