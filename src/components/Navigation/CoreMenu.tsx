@@ -11,7 +11,7 @@ const CoreMenu: React.FC = () => {
   const CorePreview = pageComponents["core"].Preview;
   return <>
     <Navtab
-      className="w-[92px]"
+      className="w-[65px]"
       text="core"
       active={section === "core"}
       link={section === "core" ? "/" : "/core"}

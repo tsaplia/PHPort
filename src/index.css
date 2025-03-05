@@ -4,7 +4,19 @@
 
 @layer components {
   .blured {
-    @apply opacity-50 blur-md;
+    @apply md:opacity-50 md:blur-md;
+  }
+
+  .small-screen-text {
+    @apply max-md:px-[45px]
+  }
+  
+  .narrow-page {
+    @apply md:px-[33%] overflow-x-hidden;
+  }
+
+  .centered-page {
+    @apply flex items-center justify-center h-screen;
   }
 }
 
@@ -13,7 +25,7 @@
   line-height: 1.5;
   font-weight: 400;
   font-style: normal;
-  font-size: 21px;
+  font-size: 14px;
 
   --background: #000;
   --text-accent: #ffffffe6;

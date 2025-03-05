@@ -1,10 +1,14 @@
 import * as Glyphs from "./Glyphs";
 import * as Stuff from "./Stuff";
-import * as Core from "./Core"
+import * as Core from "./Core";
 
-export const indexPages = [
-  { name: "stuff", ready: true, id:"stuff" },
-  { name: "glyphs", ready: true, id: "glyphs" },
+type PageConfig =
+  | { name: string; ready: true; id: Pages; infScroll?: boolean }
+  | { name: string; ready: false };
+
+export const indexPages: PageConfig[] = [
+  { name: "stuff", ready: true, id: "stuff" },
+  { name: "glyphs", ready: true, id: "glyphs", infScroll: true },
   { name: "test", ready: false },
 ] as const;
 

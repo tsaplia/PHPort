@@ -2,6 +2,7 @@ import { useSaveContext } from "../../lib/use-context";
 import { NavContext } from "../../contexts/NavContext";
 import { pageComponents } from "../page-classes";
 import { useEffect } from "react";
+import { NormalPage } from "../utils/NormalPage";
 
 function CorePage() {
   const nav = useSaveContext(NavContext);
@@ -10,7 +11,7 @@ function CorePage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const Core = pageComponents["core"].Main;
-  return <Core />;
+  return <NormalPage><Core /></NormalPage>;
 }
 
 export default CorePage;

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import Navigation from "../Navigation/Navigation";
 
 export function InfiniteScroll({ children }: { children: React.ReactNode }) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -13,17 +14,22 @@ export function InfiniteScroll({ children }: { children: React.ReactNode }) {
       scrollRef.current.scrollTop = scrollTop + pageHeight;
     }
   }
+
   return (
-    <div
-      className="overflow-y-scroll h-screen w-full"
-      style={{ scrollbarWidth: "none" }}
-      onScroll={onScroll}
-      ref={scrollRef}
-    >
-      {children}
-      {children}
-      {children}
-      {children}
-    </div>
+    <>
+      <div
+        className="overflow-y-scroll h-screen w-full animate-fadeIn"
+        style={{ scrollbarWidth: "none" }}
+        onScroll={onScroll}
+        ref={scrollRef}
+      >
+        {[0, 1, 2, 3].map((i) => (
+          <div key={i}>
+            <div className="small-screen-text md:hidden"><Navigation className="mb-[115px] mt-[117px]"/></div>
+            {children}
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

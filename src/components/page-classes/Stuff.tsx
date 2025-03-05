@@ -12,7 +12,7 @@ export const info =
 
 export function Main() {
   return (
-    <div style={{ color: "limegreen" }} className="narrow-page centered-page">
+    <div style={{ color: "limegreen" }} className="narrow-page md:centered-page">
       <div>
         <img src={testImg} alt="" />
       </div>

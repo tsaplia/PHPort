@@ -9,9 +9,9 @@ function App() {
     <>
       <NavContextProvider>
         <PageContextProvider>
-          <PageManager className="w-screen min-h-screen fixed" />
-          <Navigation className="fixed z-10 left-[252px] top-[406px]"/>
-          <PagePreview className="fixed z-20"/>
+          <PageManager className="w-screen min-h-screen absolute" />
+          <Navigation className="fixed z-10 left-[150px] top-[240px] max-md:hidden"/>
+          <PagePreview className="fixed z-20 hidden md:block"/>
         </PageContextProvider>
       </NavContextProvider>
     </>

@@ -15,7 +15,7 @@ const IndexMenu: React.FC = () => {
     <>
       <div className="flex group">
         <Navtab
-          className="w-[92px]"
+          className="w-[65px]"
           text="index"
           active={section == "index"}
           disabled={false}
@@ -26,8 +26,9 @@ const IndexMenu: React.FC = () => {
 
         <div
           className={
-            `flex flex-col ms-12 min-w-[182px] animate-fadeIn group-hover:block ` +
-            `${section == "index" ? "block" : "hidden"} ${blur && !showPreview ? "blured" : ""}`
+            `${section == "index" ? "visible" : "invisible"} ` +
+            `${blur && !showPreview ? "blured" : ""}` +
+            `flex flex-col ms-12 min-w-[105px] animate-fadeIn group-hover:visible`
           }
         >
           {indexPages.map((p) => (
