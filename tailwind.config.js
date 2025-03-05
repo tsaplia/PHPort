@@ -9,10 +9,6 @@ export default {
         normal: "var(--text-normal)",
         muted: "var(--text-muted)",
       },
-      width: {
-        tab: "calc(182px - 1ch)",
-        smtab: "calc(92px - 1ch);",
-      },
       keyframes: {
         fadeIn: {
           from: { opacity: "0" },

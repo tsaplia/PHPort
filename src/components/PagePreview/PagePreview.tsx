@@ -7,10 +7,14 @@ interface Props {
 }
 const PagePreview: React.FC<Props> = ({ className = "" }) => {
   const page = useSaveContext(PageContext);
+  console.log(page.cords);
   if (!page.preview) return null;
   const PreviewComp = pageComponents[page.preview].Preview;
   return (
-    <div className={className}>
+    <div
+      className={"fixed w-[427px] " + className}
+      style={{ top: page.cords.y + 10, left: page.cords.x + 10 }}
+    >
       <PreviewComp />
     </div>
   );

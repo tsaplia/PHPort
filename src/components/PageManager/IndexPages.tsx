@@ -1,25 +1,29 @@
-import { redirect, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { indexPages, pageComponents, Pages } from "../page-classes";
 import { useSaveContext } from "../../lib/use-context";
 import { NavContext } from "../../contexts/NavContext";
 import { useEffect } from "react";
 
-function IndexPages() {
+export function RouteChecker() {
+  const { page } = useParams<{ page?: string }>();
+  if (page && !indexPages.find((p) => p.ready && p.id == page)) {
+    return <Navigate to="/" replace/>;
+  }
+
+  return IndexPages({ page: page ? page as Pages : null });
+}
+
+function IndexPages({page}: {page: Pages | null}) {
   const nav = useSaveContext(NavContext);
 
-  const { page: pageParam } = useParams<{ page?: string }>();
-  if (pageParam && indexPages.find((p) => p.ready && p.id == pageParam)) {
-    redirect("/");
-  }
-  const page = pageParam ? (pageParam as Pages) : null;
   useEffect(() => {
     nav.setPage("index", page);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   if (!page) return null;
-  const Comp = pageComponents[page].Main;
-  return <Comp />;
+  const PageComp = pageComponents[page].Main;
+  return <PageComp />;
 }
 
-export default IndexPages;
+export default RouteChecker;

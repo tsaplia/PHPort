@@ -9,4 +9,7 @@ export default defineConfig({
       "@assets": "/src/assets",
     },
   },
+  server: {
+    port: 3000,
+  }
 });

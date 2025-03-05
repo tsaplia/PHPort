@@ -22,10 +22,8 @@ export function Main() {
 
 export function Preview() {
   return (
-    <div className="narrow-page centered-page">
-      <div>
-        <img style={{ filter: "grayscale(90%)" }} src={testImg} alt="" />
-      </div>
+    <div className="w-full">
+      <img src={testImg} alt="" />
     </div>
   );
 }

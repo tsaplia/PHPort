@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .blured {
+    @apply opacity-50 blur-md;
+  }
+}
+
 :root {
   font-family: "Fragment Mono", system-ui;
   line-height: 1.5;

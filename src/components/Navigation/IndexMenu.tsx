@@ -4,41 +4,50 @@ import Navtab from "./Navtab";
 import { useSaveContext } from "../../lib/use-context";
 import { NavContext } from "../../contexts/NavContext";
 
-function IndexMenu() {
+const readyPages = indexPages.filter((p) => p.ready).map((p) => p.name);
+
+const IndexMenu: React.FC = () => {
   const { section, page } = useSaveContext(NavContext);
-  const { setPreview } = useSaveContext(PageContext);
+  const { preview, applyPreview, blur, setBlur } = useSaveContext(PageContext);
 
+  const showPreview = readyPages.find((p) => p === preview);
   return (
-    <div className="flex group">
-      <Navtab
-        className="w-smtab"
-        text="index"
-        active={section == "index"}
-        disabled={false}
-        link={"index"}
-      />
+    <>
+      <div className="flex group">
+        <Navtab
+          className="w-[92px]"
+          text="index"
+          active={section == "index"}
+          disabled={false}
+          link={section == "index" ? "/" : "/index"}
+          onEnter={() => setBlur(false)}
+          onLeave={() => setBlur(false)}
+        />
 
-      <div
-        className={`flex flex-col ms-12 w-tab animate-fadeIn group-hover:block 
-          ${section == "index" ? "block" : "hidden"}`}
-      >
-        {indexPages.map((p) => (
-          <Navtab
-            className="w-tab"
-            key={p.name}
-            text={p.name}
-            active={page === p.name}
-            link={p.ready ? "index/" + p.id : null}
-            onEnter={() => {
-              if (p.ready) setPreview(p.name);
-            }}
-            onLeave={() => setPreview(null)}
-            disabled={!p.ready}
-          />
-        ))}
-      </div>
+        <div
+          className={
+            `flex flex-col ms-12 min-w-[182px] animate-fadeIn group-hover:block ` +
+            `${section == "index" ? "block" : "hidden"} ${blur && !showPreview ? "blured" : ""}`
+          }
+        >
+          {indexPages.map((p) => (
+            <Navtab
+              key={p.name}
+              text={p.name}
+              active={page === p.name}
+              link={p.ready ? "/index/" + (page === p.name ? "" : p.id) : null}
+              onEnter={() => {
+                if (p.ready) {
+                  applyPreview(p.id);
+                }
+              }}
+              onLeave={() => applyPreview(null)}
+              disabled={!p.ready}
+            />
+          ))}
+        </div>
 
-      {/* {childShowed && (
+        {/* {childShowed && (
             <div _class="info-box">
               <div
                 _class={hovered === "info" ? "active" : ""}
@@ -52,8 +61,9 @@ function IndexMenu() {
               )}
             </div>
           )} */}
-    </div>
+      </div>
+    </>
   );
-}
+};
 
 export default IndexMenu;

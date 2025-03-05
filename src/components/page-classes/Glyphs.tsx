@@ -29,7 +29,7 @@ export function Main(): React.ReactElement {
 
 export function Preview() {
   return (
-    <div className="centered-page">
+    <div className="w-full p-5">
       <div
         style={{
           background: "linear-gradient(to bottom, white, grey)",

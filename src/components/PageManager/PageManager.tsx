@@ -11,17 +11,17 @@ interface Props {
 }
 
 const PageManager: React.FC<Props> = ({ className = "" }) => {
-  const page = useSaveContext(PageContext);
+  const pageCtx = useSaveContext(PageContext);
   const location = useLocation();
 
   useEffect(() => {
-    page.setPreview(null);
+    pageCtx.applyPreview(null);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (
     <>
-      <div className={`${className} ${page.blur ? "-z-1 opacity-50 blur-md" : ""}`}>
+      <div className={`${className} ${pageCtx.blur ? "-z-1 opacity-50 blur-md" : ""}`}>
         <Routes>
           <Route path="/" element={<></>} />
           <Route path="/core" element={<CorePage />} />
