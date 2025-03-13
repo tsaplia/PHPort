@@ -2,7 +2,7 @@ import * as Glyphs from "./Glyphs";
 import * as Stuff from "./Stuff";
 import * as Core from "./Core";
 
-type PageConfig =
+export type PageConfig =
   | { name: string; ready: true; id: Pages; infScroll?: boolean }
   | { name: string; ready: false };
 

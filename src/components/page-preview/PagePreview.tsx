@@ -7,7 +7,6 @@ interface Props {
 }
 const PagePreview: React.FC<Props> = ({ className = "" }) => {
   const page = useSaveContext(PageContext);
-  console.log(page.cords);
   if (!page.preview) return null;
   const PreviewComp = pageComponents[page.preview].Preview;
   return (

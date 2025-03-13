@@ -5,15 +5,15 @@ import { useSaveContext } from "../../lib";
 
 interface Props {
   text: string;
-  link: string | null;
+  link?: string | null;
   active: boolean;
   onEnter?: () => void;
   onLeave?: () => void;
   className?: string;
-  disabled: boolean;
+  pageTab?: boolean;
 }
 
-const Navtab: React.FC<Props> = ({ text, active, onEnter, onLeave, className, disabled, link }) => {
+const Navtab: React.FC<Props> = ({ text, active, onEnter, onLeave, className, link, pageTab }) => {
   const pageCtx = useSaveContext(PageContext);
 
   const [hover, setHover] = useState<boolean>(false);
@@ -28,17 +28,15 @@ const Navtab: React.FC<Props> = ({ text, active, onEnter, onLeave, className, di
     setHover(false);
   }
 
-  
   function handleMove(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     pageCtx.setCords({ x: e.clientX, y: e.clientY });
   }
 
-  if (disabled)
-    return (
-      <div className={`${className || ""} flex text-muted h-4 mb-4 cursor-wait select-none leading-none`}>
-        {"// " + text}
-      </div>
-    );
+  function getIcon() {
+    if (pageTab) return active ? "■" : "";
+    if (active) return hover ? "←" : "→";
+    return hover ? "*" : "+";
+  }
 
   return (
     <Link
@@ -49,7 +47,7 @@ const Navtab: React.FC<Props> = ({ text, active, onEnter, onLeave, className, di
       onMouseMove={handleMove}
     >
       <div className={`me-auto ${className} ${hover || active ? "text-accent" : ""}`}>{text}</div>
-      <div className={active || hover ? "text-accent" : ""}>{active ? (hover ? "←" : "→") : hover ? "*" : "+"}</div>
+      <div className={active || hover ? "text-accent" : ""}>{getIcon()}</div>
     </Link>
   );
 };

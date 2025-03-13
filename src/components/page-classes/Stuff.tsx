@@ -14,7 +14,7 @@ export function Main() {
   return (
     <div style={{ color: "limegreen" }} className="narrow-page md:centered-page">
       <div>
-        <img src={testImg} alt="" />
+        <img className="w-full" src={testImg} alt="" />
       </div>
     </div>
   );

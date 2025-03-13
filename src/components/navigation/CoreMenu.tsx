@@ -17,7 +17,6 @@ const CoreMenu: React.FC = () => {
       link={section === "core" ? "/" : "/core"}
       onEnter={() => applyPreview("core")}
       onLeave={() => applyPreview(null)}
-      disabled={false}
     />
     {preview === "core" && <CorePreview/>}
   </>

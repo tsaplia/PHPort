@@ -4,7 +4,8 @@ import { useSaveContext } from "../../lib/use-context";
 import { PageContext } from "../../contexts/PageContext";
 import CorePage from "./CorePage";
 import IndexPages from "./IndexPages";
-import { NormalPage } from "../utils/NormalPage";
+import { Page } from "../peges/Page";
+import { NavContext } from "../../contexts/NavContext";
 
 interface Props {
   className?: string;
@@ -12,10 +13,12 @@ interface Props {
 
 const PageManager: React.FC<Props> = ({ className = "" }) => {
   const pageCtx = useSaveContext(PageContext);
+  const navCtx = useSaveContext(NavContext);
   const location = useLocation();
 
   useEffect(() => {
     pageCtx.applyPreview(null);
+    if(location.pathname === "/") navCtx.setPage(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
@@ -23,7 +26,7 @@ const PageManager: React.FC<Props> = ({ className = "" }) => {
     <>
       <div className={`${className} ${pageCtx.blur ? "md:-z-1 md:opacity-50 md:blur-md" : ""}`}>
         <Routes>
-          <Route path="/" element={<NormalPage />} />
+          <Route path="/" element={<Page />} />
           <Route path="/core" element={<CorePage />} />
           <Route path="/index/:page?" element={<IndexPages />} />
         </Routes>

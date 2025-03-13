@@ -7,10 +7,10 @@ interface Props {
 
 export const Navigation: React.FC<Props> = ({ className = "" }) => {
   return (
-    <div className={"flex flex-col " + className}>
+    <nav className={"flex flex-col " + className}>
       <CoreMenu/>
       <IndexMenu />
-    </div>
+    </nav>
   );
 };
 

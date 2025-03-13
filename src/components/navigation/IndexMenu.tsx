@@ -1,8 +1,9 @@
 import { PageContext } from "../../contexts/PageContext";
-import { indexPages } from "../page-classes";
+import { indexPages, PageConfig } from "../page-classes";
 import Navtab from "./Navtab";
 import { useSaveContext } from "../../lib/use-context";
 import { NavContext } from "../../contexts/NavContext";
+import DisabledTab from "./DisabledTab";
 
 const readyPages = indexPages.filter((p) => p.ready).map((p) => p.name);
 
@@ -11,6 +12,28 @@ const IndexMenu: React.FC = () => {
   const { preview, applyPreview, blur, setBlur } = useSaveContext(PageContext);
 
   const showPreview = readyPages.find((p) => p === preview);
+
+  function getTab(config: PageConfig) {
+    if (config.ready) {
+      return (
+        <Navtab
+          key={config.name}
+          text={config.name}
+          active={page === config.name}
+          link={config.ready ? "/index/" + (page === config.name ? "" : config.id) : null}
+          onEnter={() => {
+            if (config.ready) {
+              applyPreview(config.id);
+            }
+          }}
+          onLeave={() => applyPreview(null)}
+          pageTab
+        />
+      );
+    }
+    return <DisabledTab key={config.name} text={config.name} />;
+  }
+
   return (
     <>
       <div className="flex group">
@@ -18,7 +41,6 @@ const IndexMenu: React.FC = () => {
           className="w-[65px]"
           text="index"
           active={section == "index"}
-          disabled={false}
           link={section == "index" ? "/" : "/index"}
           onEnter={() => setBlur(false)}
           onLeave={() => setBlur(false)}
@@ -31,37 +53,8 @@ const IndexMenu: React.FC = () => {
             `flex flex-col ms-12 min-w-[105px] animate-fadeIn group-hover:visible`
           }
         >
-          {indexPages.map((p) => (
-            <Navtab
-              key={p.name}
-              text={p.name}
-              active={page === p.name}
-              link={p.ready ? "/index/" + (page === p.name ? "" : p.id) : null}
-              onEnter={() => {
-                if (p.ready) {
-                  applyPreview(p.id);
-                }
-              }}
-              onLeave={() => applyPreview(null)}
-              disabled={!p.ready}
-            />
-          ))}
+          {indexPages.map((p) => getTab(p))}
         </div>
-
-        {/* {childShowed && (
-            <div _class="info-box">
-              <div
-                _class={hovered === "info" ? "active" : ""}
-                onMouseEnter={() => bluredEnter("info")}
-                onMouseLeave={() => bluredLeave()}
-              >
-                info {hovered == "info" ? "-" : "*"}
-              </div>
-              {hovered == "info" && showed && (
-                <div _class="info">{pageComponents[showed].info}</div>
-              )}
-            </div>
-          )} */}
       </div>
     </>
   );
