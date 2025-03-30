@@ -8,9 +8,9 @@
   }
 
   .small-screen-text {
-    @apply max-md:px-[45px]
+    @apply max-md:px-[45px];
   }
-  
+
   .narrow-page {
     @apply md:px-[33%] overflow-x-hidden;
   }
@@ -21,7 +21,7 @@
 }
 
 :root {
-  font-family: "Fragment Mono", system-ui;
+  font-family: "Fragment Mono", monospace, system-ui;
   line-height: 1.5;
   font-weight: 400;
   font-style: normal;

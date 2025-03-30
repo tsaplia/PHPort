@@ -18,13 +18,13 @@ const PageManager: React.FC<Props> = ({ className = "" }) => {
 
   useEffect(() => {
     pageCtx.applyPreview(null);
-    if(location.pathname === "/") navCtx.setPage(null);
+    if (location.pathname === "/") navCtx.setPage(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
   return (
     <>
-      <div className={`${className} ${pageCtx.blur ? "md:-z-1 md:opacity-50 md:blur-md" : ""}`}>
+      <div className={`${className} ${pageCtx.blur ? "md:opacity-50 md:blur-md" : ""}`}>
         <Routes>
           <Route path="/" element={<Page />} />
           <Route path="/core" element={<CorePage />} />

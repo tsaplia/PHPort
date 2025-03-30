@@ -34,7 +34,7 @@ const Navtab: React.FC<Props> = ({ text, active, onEnter, onLeave, className, li
 
   function getIcon() {
     if (pageTab) return active ? "■" : "";
-    if (active) return hover ? "←" : "→";
+    if (active) return <span className="-rotate-90 inline-block">{hover ? "\u2191" : "\u2193"}</span>;
     return hover ? "*" : "+";
   }
 
